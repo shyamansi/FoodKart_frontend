@@ -20,10 +20,12 @@ const EditProduct = ({isAdmin}) => {
       })
       .then((data) => {
         setProduct({
-          name: data.name || '',
-          price: data.price || '',
-          category_name: data.category_name || ''
-        });
+    name: data.name || '',
+    price: data.price || '',
+    category_name: data.category_name || '',
+    image: '', 
+    image_url: data.image_url || '' 
+  });
         setLoading(false);
       })
       .catch((err) => {
@@ -151,8 +153,8 @@ const EditProduct = ({isAdmin}) => {
                     onChange={handleChange}
                   />
                   {(product.image_url || product.image) && (
-                    <img src={product.image_url || (typeof product.image === 'string' ? product.image : '')} alt="Preview" style={{ maxWidth: '100%', marginTop: 10 }} />
-                  )}
+  <img src={product.image_url || (typeof product.image === 'string' ? product.image : '')} alt="Preview" style={{ maxWidth: '100%', marginTop: 10 }} />
+)}
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Update Product</button>
                 </form>

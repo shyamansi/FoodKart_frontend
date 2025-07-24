@@ -7,7 +7,7 @@ const GoogleLoginButton = () => {
         fetch('http://localhost:3000/users/auth/google_oauth2/callback',{
             method: 'POST',
               credentials: 'include',
-            header: {
+            headers: {
                 'Content-Type':'application/json',
             },
             body: JSON.stringify({

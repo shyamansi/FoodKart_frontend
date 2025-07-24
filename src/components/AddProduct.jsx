@@ -11,13 +11,15 @@ const AddProduct = ({isAdmin}) => {
     category_name: '',
     image: ''
   });
-  const [error, setError] = useState(null);
+   const [imagePreview, setImagePreview] = useState(null); // <-- Add this
+   const [error, setError] = useState(null);
   const [adding, setAdding] = useState(false);
 
-  const handleChange = (e) => {
+ const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'image' && files && files[0]) {
       setFormdata((prev) => ({ ...prev, image: files[0] }));
+      setImagePreview(URL.createObjectURL(files[0])); // <-- Set preview
     } else {
       setFormdata((prev) => ({ ...prev, [name]: value }));
     }
@@ -137,8 +139,8 @@ const AddProduct = ({isAdmin}) => {
                       accept="image/*"
                       onChange={handleChange}
                     />
-                    {formdata.image && (
-                      <img src={formdata.image_url} alt="Preview" style={{ maxWidth: '100%', marginTop: 10 }} />
+                     {imagePreview && (
+                      <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', marginTop: 10, borderRadius: 8 }} />
                     )}
                   </div>
                   <div className="d-grid gap-2">
